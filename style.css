@@ -1,0 +1,884 @@
+:root {
+    --color-primary: #ad0000;
+    --color-dark: #000000;
+    --color-accent: #342F29;
+    --color-light: #ffffff;
+}
+
+
+/* --- NAVBAR ADAPTATIVO --- */
+
+/* --- 1. NAVBAR ADAPTATIVO --- */
+.navbar-custom {
+    background-color: transparent !important;
+    backdrop-filter: blur(0px);
+    transition: all 0.4s ease-in-out;
+    border-bottom: 1px solid transparent;
+}
+
+.navbar-scrolled {
+    background-color: rgba(173, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* --- 2. ESTILO BASE DE LOS LINKS --- */
+.navbar-custom .nav-link {
+    color: rgba(255, 255, 255, 0.7) !important; /* Blanco tenue para los no activos */
+    background-color: transparent !important;
+    font-weight: 900 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 15px !important;
+    display: inline-block;
+    border-bottom: 3px solid transparent !important;
+    transition: transform 0.2s ease, border-bottom 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+    transform: translateY(0); /* Siempre empiezan en la base */
+}
+
+/* --- 3. EFECTO HOVER (SOLO AL PASAR EL MOUSE) --- */
+.navbar-custom .nav-link:hover {
+    color: #ffffff !important;
+    opacity: 1;
+    transform: translateY(-5px); /* Aquí es donde "brinca" */
+    border-bottom: 3px solid #ffffff !important; /* Se subraya al tocarlo */
+}
+
+/* --- 4. ESTADO ACTIVO (SE QUEDA EN LA BASE, PERO SUBRAYADO) --- */
+/* Esto evita que la palabra se quede flotando permanentemente */
+.navbar-custom .nav-link.active,
+.nav-pills .nav-link.active {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    background-color: transparent !important; /* Mata el rojo de Bootstrap */
+    transform: translateY(0) !important; /* Se queda aterrizado */
+    border-bottom: 3px solid #ffffff !important; /* Mantiene el subrayado */
+}
+
+/* --- 5. ANIMACIONES DE REVELADO --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-section {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* --- NUEVO BRAND (IZQUIERDA) --- */
+
+.brand-title {
+    color: var(--color-light) !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+}
+
+/* --- LIMPIEZA TOTAL DE BOTONES (ESTILO UNAM + LEVANTE) --- */
+.navbar-custom .nav-link {
+    background-color: transparent !important;
+    color: var(--color-light) !important; /* Blanco inicial */
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    padding: 10px 20px !important;
+    
+    /* PREPARACIÓN PARA EL EFECTO */
+    display: inline-block; /* Permite el movimiento vertical */
+    border-bottom: 3px solid transparent !important; /* Espacio para la línea */
+    transition: transform 0.3s ease, border-bottom 0.3s ease, color 0.3s ease;
+}
+
+/* EFECTO AL PASAR EL CURSOR: SE LEVANTA Y SE SUBRAYA EN BLANCO */
+.navbar-custom .nav-link:hover {
+    color: #ffffff !important; /* Forzamos blanco puro */
+    transform: translateY(-5px); /* El brinco hacia arriba */
+    border-bottom: 3px solid #ffffff !important; /* Subrayado blanco */
+    background-color: transparent !important;
+}
+
+/* ESTADO ACTIVO: SE QUEDA EN EL SUELO PERO SUBRAYADO */
+.navbar-custom .nav-link.active {
+    color: #ffffff !important;
+    border-bottom: 3px solid #ffffff !important; /* Mantiene la línea */
+    transform: translateY(0) !important; /* No se queda levantado */
+    background-color: transparent !important;
+}
+
+/* Ajuste para el menú de móvil (Navbar colapsado) */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        background: rgba(0, 0, 0, 0.95); /* Fondo sólido solo en móvil */
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .navbar-custom .nav-link {
+        text-align: center;
+        padding: 15px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+    
+    .main-title {
+        font-size: 2.5rem !important; 
+    }
+}
+
+/* --- SECCIÓN HERO Y VIDEO (MANTENER) --- */
+.hero-section { 
+    position: relative; 
+    height: 100vh; 
+    width: 100%; 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.video-bg { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    min-width: 100%; 
+    min-height: 100%; 
+    transform: translate(-50%, -50%); 
+    z-index: -2; 
+    object-fit: cover; 
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(0, 0, 0, 0.7) 0%,      /* Más oscuro arriba para que el navbar luzca */
+        rgba(0, 0, 0, 0.2) 60%, 
+        var(--color-accent) 100%    /* Fundido perfecto a la siguiente sección */
+    );
+    z-index: -1;
+}
+
+.custom-btn.active, .custom-btn:hover {
+    background-color: var(--color-accent) !important;
+}
+
+/* Ajustes de Texto para Móvil */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem !important; /* Texto más chico en cel */
+    }
+    .time-block span {
+        font-size: 2rem !important;
+    }
+    /* Hace que el menú desplegable sea negro para que se vea bien */
+    .navbar-collapse {
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+}
+
+/* --- Resto de tu estructura de video (mantener igual) --- */
+.hero-section { position: relative; height: 100vh; width: 100%; overflow: hidden; display: flex; flex-direction: column; }
+.video-bg { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); z-index: -2; object-fit: cover; }
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradiente lineal para eliminar el corte brusco */
+    background: linear-gradient(
+        to bottom, 
+        rgba(0, 0, 0, 0.6) 0%,      /* Oscuridad arriba para que resalte el texto del header */
+        rgba(0, 0, 0, 0.1) 60%,     /* Casi transparente en medio para ver bien el video */
+        var(--color-accent) 100%    /* Se funde al 100% con tu color gris de la siguiente sección */
+    );
+    z-index: -1;
+}
+.hero-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; z-index: 1; color: white; }
+.main-title { font-size: 5rem; font-weight: 900; }
+.countdown-container { display: flex; gap: 20px; align-items: center; }
+
+
+
+/* Contenedor con tu gris accent */
+.bg-custom-grey {
+    background: linear-gradient(
+        to bottom, 
+        var(--color-accent) 0%, 
+        #1a1a1a 70%, /* El negro empieza a dominar un poco antes */
+        var(--color-dark) 100%
+    ) !important;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0; /* Evita cualquier separación accidental */
+}
+
+/* Asegúrate de que la malla técnica sea clara para que se vea sobre el negro */
+.bg-custom-grey::before {
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.bg-custom-grey .container {
+    position: relative;
+    z-index: 1; /* Esto "empuja" el texto hacia adelante del degradado y la malla */
+}
+
+/* Título en tu rojo primary */
+.title-red {
+    color: var(--color-primary) !important;
+}
+
+/* Botón Rojo Personalizado */
+.btn-custom-red {
+    background-color: var(--color-primary) !important;
+    color: var(--color-light) !important;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-custom-red:hover {
+    background-color: var(--color-dark) !important; /* Cambia a negro al pasar el mouse */
+    transform: translateY(-3px);
+}
+
+/* Forzar texto blanco en el párrafo lead */
+.text-white {
+    color: var(--color-light) !important;
+}
+
+/* Altura fija para que el carrusel no "salte" si las fotos tienen tamaños distintos */
+.carousel-img {
+    height: 500px;
+    object-fit: cover;
+    filter: brightness(50%); /* Oscurece la imagen para leer el texto blanco */
+}
+
+/* Estilo para los textos dentro del carrusel */
+.custom-caption {
+    background: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para el texto */
+    padding: 2rem;
+    border-radius: 15px;
+    bottom: 20%; /* Sube un poco el texto */
+}
+
+.custom-caption h2 {
+    font-size: 3rem !important;
+}
+
+@media (max-width: 768px) {
+    .carousel-img { height: 350px; }
+    .custom-caption h2 { font-size: 1.5rem !important; }
+    .custom-caption p { font-size: 0.9rem; }
+}
+
+
+
+
+
+
+/* --- SECCIÓN EL VEHÍCULO --- */
+.exploded-section {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--color-dark) !important; /* Fondo negro sólido */
+    display: flex;
+    align-items: center;
+    margin-top: -1px; /* Solapa un píxel para eliminar líneas blancas de renderizado */
+}
+
+/* Video de fondo con blindaje */
+.video-bg-exploded {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    object-fit: cover;
+}
+.video-overlay-grad {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Degradado que empieza NEGRO para fundirse con la sección de arriba */
+    background: linear-gradient(
+        to bottom,
+        var(--color-dark) 0%, 
+        rgba(34, 32, 32, 0.5) 20%, 
+        transparent 50%
+    );
+    z-index: 2; /* Por encima del video (z-index: 1) */
+    pointer-events: none;
+}
+
+/* El Degradado que pediste (Funde con negro a la izquierda y gris abajo) */
+.video-bg-exploded {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* El video al fondo */
+    object-fit: cover;
+}
+
+.exploded-section .container {
+    position: relative;
+    z-index: 3; /* Texto e info al frente de todo */
+}
+
+/* Estilos de las 7 subsecciones */
+.spec-label {
+    color: #ff0000 !important; /* Rojo vibrante para resaltar */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.spec-text {
+    color: var(--color-light);
+    font-size: 1rem;
+    opacity: 0.85;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Ajuste móvil para que el texto no tape todo el video */
+@media (max-width: 991px) {
+    .exploded-section { height: auto; padding: 80px 0; }
+    .spec-label { font-size: 1rem; }
+    .spec-text { font-size: 0.9rem; }
+}
+
+.video-overlay-grad {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Gradiente doble: Negro arriba, transparente al centro, Negro abajo */
+    background: linear-gradient(
+        to bottom, 
+        var(--color-dark) 0%,      /* Unión con Misión/Visión */
+        transparent 25%, 
+        transparent 75%, 
+        var(--color-dark) 100%     /* Unión con Patrocinadores */
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+
+
+
+
+
+
+
+#patrocinadores.bg-custom-grey {
+    /* Iniciamos en negro (para empatar el video) y subimos al gris accent */
+    background: linear-gradient(
+        to bottom, 
+        var(--color-dark) 0%, 
+        #1a1a1a 30%, 
+        var(--color-accent) 100%
+    ) !important;
+    margin-top: -1px; /* Solape de seguridad */
+}
+
+.card-sponsor {
+    position: relative;
+    background: #1a1a1a;
+    min-height: 350px;
+    transition: transform 0.4s ease;
+}
+
+/* La imagen de fondo del coche/taller */
+.card-bg-image {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px) brightness(0.4); /* La oscurecemos para que el logo resalte */
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+    z-index: 2;
+}
+
+.card-body-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Contenedor del Logo */
+.sponsor-logo {
+    max-width: 80%;
+    max-height: 100px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); /* Le da un aura al logo */
+    transition: 0.3s;
+}
+
+/* Efecto al pasar el mouse */
+.card-sponsor:hover {
+    transform: translateY(-10px);
+}
+
+.card-sponsor:hover .card-bg-image {
+    transform: scale(1.1);
+    filter: blur(0px) brightness(0.6); /* Se aclara y enfoca al hover */
+}
+
+
+
+
+
+
+
+
+
+/* Contenedor del formulario con un gris más profundo */
+.bg-dark-subtle-custom {
+    background-color: rgba(30, 30, 30, 0.6) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ajuste de los inputs para modo oscuro */
+.form-control {
+    background-color: #121212 !important;
+    color: white !important;
+    border-color: #444 !important;
+}
+
+.form-control:focus {
+    background-color: #1a1a1a !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(173, 0, 0, 0.25);
+    color: white !important;
+}
+
+/* Estilo para que el label no desaparezca al escribir */
+.form-floating > label {
+    color: rgba(255,255,255,0.6);
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: var(--color-primary);
+}
+
+
+
+
+
+
+.footer-custom {
+    /* Mismo rojo con 60% de transparencia y desenfoque */
+    background-color: #7C1514 !important;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.footer-custom .text-white {
+    opacity: 0.9;
+    transition: 0.3s;
+}
+
+/* Efecto hover para el link de Instagram */
+.ig-link:hover {
+    opacity: 1 !important;
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+/* Si la página NO es el index, forzamos que el navbar tenga color desde el inicio */
+body:not(.home-page) .navbar-custom {
+    background-color: rgba(173, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- ESTILO DE LAS CARDS DE MERCH --- */
+.merch-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-width: 2px !important;
+}
+
+.merch-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6) !important;
+}
+
+/* Contenedor de la imagen para que todas midan lo mismo */
+.card-img-wrapper {
+    height: 250px;
+    overflow: hidden;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la foto al cuadro sin deformarla */
+    transition: transform 0.5s ease;
+}
+
+.merch-card:hover .card-img-wrapper img {
+    transform: scale(1.1);
+}
+
+/* Ajuste para la card destacada (Hoodie) */
+.merch-card.featured {
+    border-color: var(--color-primary) !important;
+    transform: scale(1.05);
+}
+
+.merch-card.featured:hover {
+    transform: scale(1.08) translateY(-10px);
+}
+
+.btn-custom-red {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-custom-red:hover {
+    background-color: #8b0000;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- FORZAR VISIBILIDAD --- */
+html, body {
+    overflow-y: auto !important; /* Permite bajar con el mouse */
+    overflow-x: hidden !important;
+    height: auto !important;    /* Permite que la página crezca */
+    display: block !important;  /* Rompe cualquier flexbox que esté estorbando */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- COMPORTAMIENTO DE CARDS MERCH --- */
+
+/* Estado Base */
+/* --- AJUSTE DE ESPACIADO MERCH --- */
+.merch-page-container {
+    padding-top: 130px !important; /* El empujón que necesitabas */
+    padding-bottom: 80px;
+}
+
+/* --- ANIMACIÓN DE LAS CARDS (LEVANTE + ROJO) --- */
+.merch-card {
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.merch-card:hover {
+    transform: translateY(-15px); /* Se levanta bastante para que se note */
+    border-color: #ad0000 !important; /* Rojo Ibero */
+}
+
+/* El botón se pone rojo solo al pasar por la card */
+.merch-card:hover .merch-btn {
+    background-color: #ad0000 !important;
+    border-color: #ad0000 !important;
+    color: white !important;
+}
+
+/* El encabezado también reacciona */
+.merch-card:hover .card-header {
+    background-color: #ad0000 !important;
+    border-color: #ad0000 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- CONFIGURACIÓN DE FLIP CARDS --- */
+.team-grid {
+    perspective: 1000px; /* Necesario para el efecto 3D */
+}
+
+.flip-card {
+    background-color: transparent;
+    height: 400px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    border-radius: 15px;
+}
+
+/* Esta clase se añade con JS al hacer clic */
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* CARA FRONTAL */
+.flip-card-front {
+    background-color: #111;
+    color: white;
+}
+
+.member-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+    background-color: #222;
+}
+
+/* CARA TRASERA */
+.flip-card-back {
+    background-color: rgba(0,0,0,0.3); /* Color al voltear */
+    color: white;
+    transform: rotateY(180deg);
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.flip-card-back p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Botón en la card (sin que voltee la card) */
+.btn-contact {
+    border: 1px solid white;
+    color: white;
+    background: transparent;
+    transition: 0.3s;
+    z-index: 10; /* Asegura que esté arriba */
+}
+
+.btn-contact:hover {
+    background: white;
+    color: #ad0000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- LÍNEA DEL TIEMPO --- */
+.timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/* La línea roja vertical */
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: #ad0000; /* Rojo Ibero */
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+/* Bolita de la línea */
+.timeline-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: #ffffff;
+    border: 4px solid #ad0000;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    transition: 0.3s;
+}
+
+/* Lado izquierdo y derecho */
+.timeline-item:nth-child(odd) { left: 0; text-align: right; }
+.timeline-item:nth-child(even) { left: 50%; text-align: left; }
+
+.timeline-item:nth-child(even) .timeline-dot { left: -10px; }
+
+.timeline-date {
+    font-weight: 900;
+    color: #ad0000;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.timeline-content {
+    padding: 20px;
+    background-color: #111;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    color: white;
+    transition: 0.3s;
+}
+
+.timeline-item:hover .timeline-content {
+    border-color: #ad0000;
+    transform: scale(1.02);
+}
+
+.timeline-item:hover .timeline-dot {
+    background-color: #ad0000;
+}
+
+/* --- AJUSTE PARA CELULARES --- */
+@media screen and (max-width: 768px) {
+    .timeline-container::after { left: 31px; }
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        text-align: left !important;
+    }
+    .timeline-item:nth-child(even) { left: 0%; }
+    .timeline-dot { left: 21px !important; }
+}
+
+
